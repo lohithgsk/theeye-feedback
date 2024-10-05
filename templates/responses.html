@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EtherX Feedback Responses | The Eye</title>
+    <link rel="stylesheet" href="https://intellx.in/static/fonts/stylesheet.css" />
+    <link rel="icon" href="https://www.cseatheeye.com/assets/LOGO-74e75b51.jpg" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.dataTables.min.css" />
+    <style type="text/css">* {
+            font-family: 'Aeonik' !important
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--background-color, #ffffff);
+            color: var(--text-color, #000);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
+            overflow: hidden; /* Prevent overflow on smaller screens */
+        }
+
+        .response-container {
+            width: 100%;
+            max-width: 800px;
+            padding: 40px;
+            text-align: center;
+            background-color: var(--container-background, #fff);
+            border-radius: 12px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            overflow: auto;
+            max-height: 80vh;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: var(--button-background, #000);
+        }
+
+        .powered-by {
+            font-size: 0.8em;
+            color: #999;
+            margin-top: 20px;
+        }
+
+        /* Dark mode */
+        body.dark-mode {
+            --background-color: #222;
+            --text-color: #fff;
+            --container-background: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 600px) {
+            th,
+            td {
+                font-size: 0.8em; /* Smaller font on mobile */
+            }
+
+            .response-container {
+                padding: 20px; /* Reduced padding on smaller screens */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="response-container">
+        <h2>EtherX Feedback Responses</h2>
+
+        <table id="feedbackTable" class="display responsive nowrap">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Roll Number</th>
+                    <th>What specific topics from the DevSecOps session did you find most useful?</th>
+                    <th>What improvements would you suggest for the DevSecOps session?</th>
+                    <th>Any additional comments about the DevSecOps workshop?</th>
+                    <th>What CTF platform did you find the most helpful?</th>
+                    <th>What improvements would you suggest for the CTF workshop?</th>
+                    <th>What OSINT technique or tool did you find most interesting?</th>
+                    <th>Any suggestions for improving the OSINT Workshop?</th>
+                    <th>Any additional comments about the CTF and OSINT Workshops?</th>
+                    <th>What aspect of the Case Study event did you find most engaging?</th>
+                    <th>What challenges did you face during the Case Study?</th>
+                    <th>Any suggestions for improving the Case Study event?</th>
+                    <th>Any additional comments about the Case Study?</th>
+                    <th>What was your favorite part of the EtherX event?</th>
+                    <th>What improvements would you suggest for future events?</th>
+                    <th>How did you hear about the EtherX event?</th>
+                    <th>Any additional comments about the overall event?</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for response in responses %}
+                <tr>
+                    <td>{{ response.name }}</td>
+                    <td>{{ response.roll_number }}</td>
+                    <td>{{ response.feedback.get('feed-What specific topics from the DevSecOps session did you find most useful?') }}</td>
+                    <td>{{ response.feedback.get('feed-What improvements would you suggest for the DevSecOps session?') }}</td>
+                    <td>{{ response.feedback.get('feed-Any additional comments about the DevSecOps workshop?') }}</td>
+                    <td>{{ response.feedback.get('feed-What CTF platform did you find the most helpful?') }}</td>
+                    <td>{{ response.feedback.get('feed-What improvements would you suggest for the CTF workshop?') }}</td>
+                    <td>{{ response.feedback.get('feed-What OSINT technique or tool did you find most interesting?') }}</td>
+                    <td>{{ response.feedback.get('feed-Any suggestions for improving the OSINT Workshop?') }}</td>
+                    <td>{{ response.feedback.get('feed-Any additional comments about the CTF and OSINT Workshops?') }}</td>
+                    <td>{{ response.feedback.get('feed-What aspect of the Case Study event did you find most engaging?') }}</td>
+                    <td>{{ response.feedback.get('feed-What challenges did you face during the Case Study?') }}</td>
+                    <td>{{ response.feedback.get('feed-Any suggestions for improving the Case Study event?') }}</td>
+                    <td>{{ response.feedback.get('feed-Any additional comments about the Case Study?') }}</td>
+                    <td>{{ response.feedback.get('feed-What was your favorite part of the EtherX event?') }}</td>
+                    <td>{{ response.feedback.get('feed-What improvements would you suggest for future events?') }}</td>
+                    <td>{{ response.feedback.get('feed-How did you hear about the EtherX event?') }}</td>
+                    <td>{{ response.feedback.get('feed-Any additional comments about the overall event?') }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="powered-by">Powered by The Eye</div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#feedbackTable').DataTable({
+                "responsive": true, // Enable responsive feature
+                "searching": true, // Enable searching
+                "paging": true, // Enable pagination
+                "ordering": true, // Enable ordering
+                "info": true // Show info
+            });
+        });
+    </script>
+</body>
+
+</html>
