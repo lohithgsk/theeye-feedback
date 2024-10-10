@@ -141,10 +141,10 @@ async def submit_feedback(
 
     # Check if the user won or received an honorable mention
     if roll_data.get("Winner") == "TRUE":
-        certificate_links[f"https://qr.cseatheeye.com/etherx/participations/winners/{roll_number}"] = "Winner Certificate"
+        certificate_links[f"https://qr.cseatheeye.com/etherx/achievements/winners/{roll_number}"] = "Winner Certificate"
 
     if roll_data.get("Honorable Mention") == "TRUE":
-        certificate_links[f"https://qr.cseatheeye.com/etherx/participations/honors/{roll_number}"] = "Honorable Mention Certificate"
+        certificate_links[f"https://qr.cseatheeye.com/etherx/achievements/honors/{roll_number}"] = "Honorable Mention Certificate"
 
     # Add a general event link if any attendance is true
     if roll_data.get("ATTENDANCE") == "TRUE" or roll_data.get("ATTENDANCE Day 2") == "TRUE":
